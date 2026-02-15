@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Senrysa | HPC & Scalable Infrastructure Command</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=JetBrains+Mono:wght@400;500&display=swap');
+        
+        :root {
+            --brand-cyan: #00f2ff;
+            --brand-purple: #7000ff;
+            --brand-lime: #adff00;
+            --bg-deep: #020617;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: #f8fafc;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            font-size: 1.1rem;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        /* --- ANIMATIONS --- */
+        @keyframes float { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
+        @keyframes infra-pulse { 0% { height: 30%; opacity: 0.4; } 50% { height: 100%; opacity: 1; } 100% { height: 30%; opacity: 0.4; } }
+        @keyframes rotate-sync { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        .grid-bg {
+            background-image: 
+                linear-gradient(rgba(0, 242, 255, 0.05) 2px, transparent 2px),
+                linear-gradient(90deg, rgba(0, 242, 255, 0.05) 2px, transparent 2px);
+            background-size: 80px 80px;
+        }
+
+        /* --- CARD & ICON STYLING --- */
+        .glass-card {
+            background: rgba(15, 23, 42, 0.7);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+
+        .glass-card:hover {
+            border-color: var(--brand-cyan);
+            transform: scale(1.02) translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 242, 255, 0.15);
+        }
+
+        .icon-container {
+            width: 110px; height: 110px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 28px;
+            background: rgba(0, 242, 255, 0.1);
+            border: 2px solid var(--brand-cyan);
+            margin-bottom: 2rem;
+            animation: float 6s ease-in-out infinite;
+            transition: all 0.5s ease;
+        }
+
+        .glass-card:hover .icon-container {
+            transform: rotateY(180deg);
+            border-color: var(--brand-purple);
+            box-shadow: 0 0 30px var(--brand-purple);
+        }
+
+        .icon-container i { font-size: 3.5rem; color: var(--brand-cyan); transition: color 0.5s; }
+        .glass-card:hover .icon-container i { color: var(--brand-purple); transform: rotateY(180deg); }
+
+        /* Document "Read" Buttons */
+        .read-btn {
+            background: linear-gradient(90deg, #00f2ff, #7000ff);
+            color: #000;
+            padding: 1.1rem 3.5rem;
+            border-radius: 14px;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .read-btn:hover {
+            transform: scale(1.05) translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 242, 255, 0.4);
+        }
+
+        .logo-massive { height: 110px; filter: brightness(0) invert(1); transition: transform 0.5s ease; }
+        .logo-massive:hover { transform: scale(1.05); }
+
+        .bar { width: 14px; border-radius: 4px; background: var(--brand-cyan); animation: infra-pulse 2s infinite ease-in-out; }
+    </style>
+</head>
+<body class="grid-bg">
+
+    <!-- HERO SECTION -->
+    <header class="min-h-screen flex flex-col items-center justify-center px-6 text-center">
+        <img src="https://images.seeklogo.com/logo-png/65/2/senrysa-technologies-limited-logo-png_seeklogo-651203.png" 
+             alt="Senrysa" class="logo-massive mb-16">
+        <h1 class="reveal text-8xl md:text-[10rem] font-black mb-8 tracking-tighter leading-[0.8] uppercase">
+            SCALING <br><span class="text-cyan-400">INTELLIGENCE</span>
+        </h1>
+        <p class="reveal text-2xl md:text-3xl text-slate-400 max-w-5xl font-light leading-relaxed">
+            Scalable HPC Infrastructure and Governed AI Intelligence for High-Accountability Environments.
+        </p>
+    </header>
+
+    <!-- IDENTITY PILLARS (5 CARDS) -->
+    <section class="py-32 px-6 border-y border-white/5 bg-slate-950/50">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-5 gap-8">
+            <div class="reveal glass-card p-8 rounded-3xl border-t-4 border-cyan-400">
+                <div class="mb-4 text-cyan-400 text-2xl"><i class="fa-solid fa-users"></i></div>
+                <h4 class="text-white font-bold text-xs uppercase mb-3 tracking-widest mono">Who We Are</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">AI-Native DeepTech engineering firm bridging experimental AI and production systems.</p>
+            </div>
+            <div class="reveal glass-card p-8 rounded-3xl border-t-4 border-purple-500" style="transition-delay: 0.1s;">
+                <div class="mb-4 text-purple-400 text-2xl"><i class="fa-solid fa-microchip"></i></div>
+                <h4 class="text-white font-bold text-xs uppercase mb-3 tracking-widest mono">What It Builds</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">HPC Clusters, Scalable Pipelines, and Governed Orchestration Platforms.</p>
+            </div>
+            <div class="reveal glass-card p-8 rounded-3xl border-t-4 border-lime-400" style="transition-delay: 0.2s;">
+                <div class="mb-4 text-lime-400 text-2xl"><i class="fa-solid fa-earth-americas"></i></div>
+                <h4 class="text-white font-bold text-xs uppercase mb-3 tracking-widest mono">Where It Operates</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Global Cloud-Edge and Secure On-Premise for Industrial and Defense sectors.</p>
+            </div>
+            <div class="reveal glass-card p-8 rounded-3xl border-t-4 border-cyan-400" style="transition-delay: 0.3s;">
+                <div class="mb-4 text-cyan-400 text-2xl"><i class="fa-solid fa-dna"></i></div>
+                <h4 class="text-white font-bold text-xs uppercase mb-3 tracking-widest mono">Why Different</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Governance and zero-drift configuration logic embedded into the compute backbone.</p>
+            </div>
+            <div class="reveal glass-card p-8 rounded-3xl border-t-4 border-white" style="transition-delay: 0.4s;">
+                <div class="mb-4 text-white text-2xl"><i class="fa-solid fa-award"></i></div>
+                <h4 class="text-white font-bold text-xs uppercase mb-3 tracking-widest mono">Why Trusted</h4>
+                <p class="text-xs text-slate-400 leading-relaxed">Proven track record with National PDS Digitization and SAIL Industrial projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- TECHNICAL INFRASTRUCTURE COMMAND -->
+    <section id="documents" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="reveal text-6xl font-black mb-24 text-center tracking-widest">TECHNICAL <span class="text-cyan-400 italic font-extrabold">BRIEFS</span></h2>
+            
+            <div class="grid gap-16">
+                <!-- BRIEF 1: HPA -->
+                <div class="reveal glass-card p-12 md:p-20 rounded-[4rem] border-l-[16px] border-cyan-400">
+                    <div class="flex flex-col lg:flex-row gap-16 items-center">
+                        <div class="icon-container shrink-0"><i class="fa-solid fa-server"></i></div>
+                        <div class="flex-1">
+                            <span class="mono text-cyan-400 font-bold text-sm mb-4 block tracking-widest">[SEN-INF-001]</span>
+                            <h3 class="text-5xl font-black mb-8 uppercase">Predictive HPA Optimization</h3>
+                            <div class="grid md:grid-cols-2 gap-10 mb-12 text-slate-400 text-lg">
+                                <p><strong>The Problem:</strong> Reactive scaling in legacy Kubernetes causes memory saturation and processing blindspots during sudden vision AI data spikes.</p>
+                                <p><strong>The Solution:</strong> Predictive HPA pre-warms compute pods by monitoring ingress telemetry, reducing scale-up latency by 75%.</p>
+                            </div>
+                            <a href="https://github.com/infra-pg/HPA/blob/main/HPA%20Optimization%20%26%20Predictive%20Elasticity.pdf" 
+                               target="_blank" 
+                               class="read-btn">
+                                <i class="fa-solid fa-file-pdf"></i> Read
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BRIEF 2: Multi-Cloud -->
+                <div class="reveal glass-card p-12 md:p-20 rounded-[4rem] border-l-[16px] border-purple-500">
+                    <div class="flex flex-col lg:flex-row gap-16 items-center">
+                        <div class="icon-container shrink-0" style="border-color: var(--brand-purple);"><i class="fa-solid fa-cloud-bolt"></i></div>
+                        <div class="flex-1">
+                            <span class="mono text-purple-400 font-bold text-sm mb-4 block tracking-widest">[SEN-INF-002]</span>
+                            <h3 class="text-5xl font-black mb-8 uppercase">Multi-Cloud Orchestration</h3>
+                            <div class="grid md:grid-cols-2 gap-10 mb-12 text-slate-400 text-lg">
+                                <p><strong>The Problem:</strong> Manual config across fragmented cloud providers causes security drift, creating vulnerabilities and infrastructure outages.</p>
+                                <p><strong>The Solution:</strong> A cloud-agnostic abstraction layer syncs immutable IaC globally against a Master Security Policy.</p>
+                            </div>
+                            <a href="https://github.com/infra-pg/HPA/blob/main/Unified%20Control%20in%20Multi-Cloud%20Environments.pdf" 
+                               target="_blank" 
+                               class="read-btn">
+                                <i class="fa-solid fa-file-pdf"></i> Read
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BRIEF 3: Governance -->
+                <div class="reveal glass-card p-12 md:p-20 rounded-[4rem] border-l-[16px] border-lime-400">
+                    <div class="flex flex-col lg:flex-row gap-16 items-center">
+                        <div class="icon-container shrink-0" style="border-color: var(--brand-lime);"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="flex-1">
+                            <span class="mono text-lime-400 font-bold text-sm mb-4 block tracking-widest">[SEN-INF-003]</span>
+                            <h3 class="text-5xl font-black mb-8 uppercase">Governance-by-Design</h3>
+                            <div class="grid md:grid-cols-2 gap-10 mb-12 text-slate-400 text-lg">
+                                <p><strong>The Problem:</strong> Defense and High-Tech sectors lack traceability for automated AI actions, failing safety and regulatory audits.</p>
+                                <p><strong>The Solution:</strong> Kernel-level digital signing of every API call and scaling event into a tamper-proof evidence repository.</p>
+                            </div>
+                            <a href="https://github.com/infra-pg/HPA/blob/main/Governance-by-Infra-Design.pdf" 
+                               target="_blank" 
+                               class="read-btn">
+                                <i class="fa-solid fa-file-pdf"></i> Read
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-24 text-center bg-slate-950 border-t border-white/5">
+        <img src="https://images.seeklogo.com/logo-png/65/2/senrysa-technologies-limited-logo-png_seeklogo-651203.png" alt="Senrysa" class="h-14 brightness-0 invert opacity-40 mx-auto mb-10">
+        <p class="mono text-xs tracking-[0.5em] text-slate-600 uppercase font-bold">© 2024 SENRYSA TECHNOLOGIES LIMITED | HPC & SCALABLE INFRASTRUCTURE ENGINEERING</p>
+    </footer>
+
+    <script>
+        // Intersection Observer for Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
